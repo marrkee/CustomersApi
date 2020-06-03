@@ -31,7 +31,7 @@
 
             if (managers == null)
             {
-                return this.StatusCode(402);
+                return this.BadRequest();
             }
 
             var metadata = new
@@ -55,7 +55,7 @@
             var manager = this.mapper.Map<Manager, ManagersViewModel>(await this.managersService.GetManager(id));
             if (manager == null)
             {
-                return this.StatusCode(404);
+                return this.NotFound();
             }
 
             return manager;

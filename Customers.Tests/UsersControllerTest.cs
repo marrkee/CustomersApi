@@ -1,5 +1,6 @@
 ﻿namespace Customers.Tests
 {
+    using System.Net;
     using System.Threading.Tasks;
     using Customers.Persistence.Models;
     using Customers.Persistence.Repositories;
@@ -43,12 +44,11 @@
             userLogin = new UserLoginModel()
             {
                 Username = "test",
-                Password = "testas",
+                Password = "incorrect",
             };
 
             response = await controller.Authenticate(userLogin);
-            value = response.Value;
-            Assert.Null(value);
+            Assert.Equal((int)HttpStatusCode.Unauthorized, (response.Result as UnauthorizedObjectResult).StatusCode);
         }
     }
 }

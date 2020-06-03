@@ -31,7 +31,7 @@
 
             if (user == null)
             {
-                return this.BadRequest(new { message = "Username or password is incorrect" });
+                return this.Unauthorized(new { message = "Username or password is incorrect" });
             }
 
             return user;
